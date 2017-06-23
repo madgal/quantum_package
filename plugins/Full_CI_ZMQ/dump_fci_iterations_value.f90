@@ -1,5 +1,8 @@
-subroutine fci_iterations(n_determinants,energy,pt2)
+subroutine dump_fci_iterations_value(n_determinants,energy,pt2)
   implicit none
+
+!  Not using an irp.f90 environment because the SAVE statement is needed for simpler code
+
 !  BEGIN_DOC
 !! Output the number of determinants, energy, and pt2 correction at each iteration 
 !  END_DOC
@@ -15,7 +18,7 @@ subroutine fci_iterations(n_determinants,energy,pt2)
 
   !!! Check to ensure that we should save iterations (default is Append)
   ! saveMethod: 1==Append, 2==Overwrite, 3==NoSave
-  call ezfio_get_full_ci_zmq_iterative(saveMethod)
+  call ezfio_get_full_ci_zmq_iterative_save(saveMethod)
 
   !!! Check we are saving data
   if (saveMethod/=3) then
